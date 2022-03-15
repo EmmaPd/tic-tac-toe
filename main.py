@@ -1,3 +1,5 @@
+import os
+
 MOVES = {"a1": "-", "a2": "-", "a3": "-",
          "b1": "-", "b2": "-", "b3": "-",
          "c1": "-", "c2": "-", "c3": "-"}
@@ -20,6 +22,10 @@ print(tic_tac_toe)
 print("Welcome to tic-tac-toe! \n")
 
 move_no = 1
+
+
+def clear_screen():
+    return os.system('cls')
 
 
 def move():
@@ -67,18 +73,22 @@ def check_if_winner():
         winner_x = all(element == "X" for element in combo)
         winner_o = all(element == "O" for element in combo)
         if winner_x:
-            print(f" ~~~~~~~~~~~~~~~~~~ X Won! ~~~~~~~~~~~~~~~~~~")
+            print("~~~~~~~~~~~~~~~~~~ X Won! ~~~~~~~~~~~~~~~~~~")
             return True
         elif winner_o:
-            print(f" ~~~~~~~~~~~~~~~~~~ O Won! ~~~~~~~~~~~~~~~~~~")
+            print("~~~~~~~~~~~~~~~~~~ O Won! ~~~~~~~~~~~~~~~~~~")
             return True
 
 
 game_is_on = True
 
-while move_no <= 9 and game_is_on:
+while game_is_on:
+    if move_no > 9:
+        print("~~~~~~~~~~~~~~~~~~ It is s tie! ~~~~~~~~~~~~~~~~~~")
     move()
     if check_if_winner():
         game_is_on = False
+    else:
+        clear_screen()
 
 
